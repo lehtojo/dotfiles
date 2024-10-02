@@ -137,7 +137,7 @@ in
      git # Source Control Tool
      htop # System Resource Viewer CLI
      # hyprlock # Lock Screen
-     kitty # Terminal
+     # kitty # Terminal
      nix-direnv # Extension for direnv
      (nerdfonts.override { fonts = [ "FiraCode" ]; }) # Font
      # pavucontrol # Audio Control App

@@ -83,5 +83,10 @@ in {
       button-layout = ":minimize,maximize,close";
       mouse-button-modifier = "<Alt>";
     };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      name = "Terminal";
+      command = "gnome-terminal";
+      binding = "<Super>t";
+    };
   };
 }
