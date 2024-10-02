@@ -151,33 +151,47 @@ cmp.setup {
 	auto_brackets = { "python" }
 }
 
+local on_attach = function(_, bufnr)
+  local opts = { noremap=true, silent=true }
+
+  -- Keybindings for LSP functions
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+end
+
 -- LSPs
 local lspconfig = require('lspconfig')
 
 -- Python
-lspconfig.pyright.setup {}
-lspconfig.ruff_lsp.setup {}
+lspconfig.pyright.setup { on_attach = on_attach }
+lspconfig.ruff_lsp.setup { on_attach = on_attach }
 
 -- Typescript, Javascript
-lspconfig.tsserver.setup {}
+lspconfig.tsserver.setup { on_attach = on_attach }
 
 -- Lua
-lspconfig.lua_ls.setup {}
+lspconfig.lua_ls.setup { on_attach = on_attach }
 
 -- Rust
-lspconfig.rust_analyzer.setup {}
+lspconfig.rust_analyzer.setup { on_attach = on_attach }
 
 -- C#
 local pid = vim.fn.getpid()
 
 lspconfig.omnisharp.setup {
-	cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(pid) }
+	cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(pid) },
+  enable_editorconfig_support = true,
+  on_attach = on_attach
 }
 
 -- Telescope
-require('telescope').setup{ 
-  defaults = { 
-    file_ignore_patterns = { 
+require('telescope').setup{
+  defaults = {
+    file_ignore_patterns = {
       "node_modules",
       "target"
     }
@@ -253,6 +267,7 @@ vim.cmd([[highlight normal guibg=transparent]])
 vim.cmd([[highlight linenr guibg=transparent]])
 vim.cmd([[highlight vertsplit guibg=transparent]])
 vim.cmd([[highlight signcolumn guibg=transparent]])
+vim.cmd([[highlight telescopeborder guibg=transparent]])
 vim.cmd([[set laststatus=0]])
 vim.cmd([[set noshowmode ]])
 vim.cmd([[set noruler]])
