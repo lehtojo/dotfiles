@@ -91,6 +91,7 @@ in {
       gpl = "git pull";
       ed = "nvim";
       exp = "xdg-open .";
+      suggest = "gh copilot suggest";
       ".." = "cd ..";
     };
   };
