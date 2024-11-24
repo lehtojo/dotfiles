@@ -82,16 +82,14 @@ in
     extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; [
        android-tools
-       # cargo # Rust Package Manager
        clang_18 # C++ Compiler
        cmake # C/C++ Build Tool
        discord # Chat App
        dotnet-sdk_8 # C# Compiler
-       # feh # Image Viewer
        gdb # Debugger
        gcc14 # C++ Compiler
+       gh # Github CLI
        gnumake # C/C++ Build Tool
-       # hyprshot # Screenshot App
        lua-language-server # Lua LSP for Neovim
        neofetch # System Info CLI
        neovim # Code Editor (CLI)
@@ -102,16 +100,11 @@ in
        qemu # Virtual Machine
        qemu_kvm # Virtual Machine
        papirus-icon-theme # Icon Theme
-       # patchelf # ELF File Utility (e.g. changing interpreter of an executable)
-       # playerctl # Tool for media controls
        python312Full # Python
        pyright # Python LSP for Neovim
        ripgrep # Utility for searching files with text
        ruff-lsp # Python LSP for Neovim
-       # rustc # Rust Compiler
-       # rustfmt # Rust Tool
-       # rustPackages.clippy # Rust Tool
-       rustup
+       rustup # Rust
        rust-analyzer # Rust LSP for Neovim
        speedcrunch # Calculator App
        stunnel # SSL/TLS Wrapper
@@ -120,6 +113,12 @@ in
        vscode # Code Editor
        whitesur-gtk-theme # GUI Theme
        xsel # Clipboard manager (at least needed by Neovim)
+
+       # Hyprland:
+       # feh # Image Viewer
+       # hyprshot # Screenshot App
+       # patchelf # ELF File Utility (e.g. changing interpreter of an executable)
+       # playerctl # Tool for media controls
     ];
   };
 
@@ -132,20 +131,22 @@ in
 
   # System packages
   environment.systemPackages = with pkgs; [
-     # brightnessctl # Screen Brightness Controller
      direnv # Environment Manager (installs packages on folder level)
      git # Source Control Tool
      htop # System Resource Viewer CLI
-     # hyprlock # Lock Screen
-     # kitty # Terminal
+     kitty # Terminal
      nix-direnv # Extension for direnv
      (nerdfonts.override { fonts = [ "FiraCode" ]; }) # Font
-     # pavucontrol # Audio Control App
      p7zip # File Compression Tools
      vim # Text Editor (CLI)
+     wget # Network Download Utility CLI
+
+     # Hyprland:
+     # brightnessctl # Screen Brightness Controller
+     # hyprlock # Lock Screen
+     # pavucontrol # Audio Control App
      # waybar # GUI Status Bar
      # wofi # App Search GUI
-     wget # Network Download Utility CLI
      # wpaperd # Wallpaper Changer
      # xfce.thunar # File Manager GUI
   ];
