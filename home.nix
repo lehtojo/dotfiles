@@ -14,12 +14,12 @@ in {
   programs.home-manager.enable = true;
 
   # Before changing the value read the documentation
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
 
   # User packages
   home.packages = with pkgs; [
     android-studio
-    gnome.gnome-tweaks
+    gnome-tweaks
   ];
 
   # Environment variables
@@ -51,7 +51,7 @@ in {
       vscode-extensions.ms-dotnettools.csharp
       vscode-extensions.ms-dotnettools.vscode-dotnet-runtime
       # Rust:
-      vscode-extensions.rust-lang.rust-analyzer
+      # vscode-extensions.rust-lang.rust-analyzer
       vscode-extensions.vadimcn.vscode-lldb
     ];
   };

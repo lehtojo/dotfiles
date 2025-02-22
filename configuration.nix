@@ -60,7 +60,7 @@ in
   services.printing.enable = false;
 
   # Sound
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -136,7 +136,7 @@ in
      htop # System Resource Viewer CLI
      kitty # Terminal
      nix-direnv # Extension for direnv
-     (nerdfonts.override { fonts = [ "FiraCode" ]; }) # Font
+     nerd-fonts.fira-code # Font
      p7zip # File Compression Tools
      vim # Text Editor (CLI)
      wget # Network Download Utility CLI
@@ -152,7 +152,7 @@ in
   ];
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+     nerd-fonts.fira-code # Font
   ];
 
   # Virtualization
@@ -171,11 +171,11 @@ in
   # networking.firewall.allowedUDPPorts = [ ... ];
 
   # Before changing this value read the documentation 
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
 
   # Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+  
   # Nvidia:
 
   # Enable OpenGL
